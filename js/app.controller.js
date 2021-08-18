@@ -17,7 +17,7 @@ function onInit() {
             map.addListener("click", (mapClicked) => {
                 console.log(mapClicked);
                 addMarker(mapClicked.latLng)
-                    .then(loc => ({ lat: loc.lat(), lng: loc.lng()}))
+                    .then(loc => ({ lat: loc.lat(), lng: loc.lng() }))
                     .then(doConfirm)
                     .then(loc => getDetailLoc(loc))
                     .then(details => locService.saveLoc(details))
@@ -54,8 +54,6 @@ function renderTable(locations) {
 
 }
 
-<<<<<<< HEAD
-=======
 function doConfirm(loc) {
     const res = confirm('Do you want to save this location?');
     return (res) ? Promise.resolve(loc) : Promise.reject('Not Now!')
@@ -65,7 +63,6 @@ function getDetailLoc(loc) {
     const name = prompt('Please enter location name');
     return Promise.resolve({ name, lat: loc.lat, lan: loc.lan, createdAt: Date.now() })
 }
->>>>>>> 22b7b365fb331abc485774550d30662773d38f6f
 
 function addMarker(loc) {
     new google.maps.Marker({
