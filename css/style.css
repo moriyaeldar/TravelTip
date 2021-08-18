@@ -24,6 +24,17 @@ h2 {
     margin: 10px;
 }
 
+th {
+    /* border-style: solid; */
+    background-color: rgb(63, 60, 60);
+    color: aliceblue;
+}
+
+td {
+    border-style: solid;
+    background-color: rgba(61, 218, 165, 0.459);
+}
+
 .current-location {
     margin: 10px;
     margin-bottom: 50px;
@@ -40,7 +51,7 @@ h2 {
 }
 
 .location-table {
-    background-color: rgb(14, 83, 148);
+    background-color: white;
     height: 200px;
     margin: 15px;
 }
@@ -67,6 +78,13 @@ button.submit {
 
 button.my {
     width: 150px;
+}
+
+button.go,
+button.delete {
+    width: 60px;
+    height: 20px;
+    margin: 1px;
 }
 
 

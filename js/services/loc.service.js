@@ -1,5 +1,6 @@
 export const locService = {
-    getLocs
+    getLocs,
+    deleteLocation
 }
 
 
@@ -12,6 +13,10 @@ function getLocs() {
     return new Promise((resolve, reject) => {
         setTimeout(() => {
             resolve(locs);
-        }, 2000)
+        }, 500)
     });
+}
+
+function deleteLocation(locationId, locations) {
+    locations.splice(locationId, 1)
 }
