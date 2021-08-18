@@ -2,7 +2,6 @@ import { locService } from './services/loc.service.js'
 import { mapService } from './services/map.service.js'
 
 window.onload = onInit;
-window.onGetUserLocation = onGetUserLocation
 window.onAddMarker = onAddMarker;
 window.onPanTo = onPanTo;
 window.onGetLocs = onGetLocs;
@@ -52,15 +51,19 @@ function onGetLocs() {
 }
 
 function onGetUserPos() {
+    var pos;
     getPosition()
         .then(pos => {
             console.log('User position is:', pos.coords);
             document.querySelector('.user-pos').innerText =
                 `Latitude: ${pos.coords.latitude} - Longitude: ${pos.coords.longitude}`
+            pos = pos.coords
         })
         .catch(err => {
             console.log('err!!!', err);
         })
+    mapService.initMap(pos.latitude, pos.longitude)
+
 }
 
 function onPanTo() {
@@ -68,4 +71,6 @@ function onPanTo() {
     mapService.panTo(35.6895, 139.6917);
 }
 
+function renderTable() {
 
+}
