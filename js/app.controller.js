@@ -9,10 +9,23 @@ window.onGetUserPos = onGetUserPos;
 
 function onInit() {
     mapService.initMap()
-        .then(() => {
+        .then((map) => {
             console.log('Map is ready');
+            console.log('Map!', map);
+            map.addListener("click", (mapClicked) => {
+                addMarker(mapClicked.latLng)
+            })
         })
         .catch(() => console.log('Error: cannot init map'));
+}
+
+function addMarker(loc) {
+    var marker = new google.maps.Marker({
+        position: loc,
+        map: mapService.getMap(),
+        title: 'Hello World!'
+    });
+    return marker;
 }
 
 // This function provides a Promise API to the callback-based-api of getCurrentPosition
@@ -51,3 +64,5 @@ function onPanTo() {
     console.log('Panning the Map');
     mapService.panTo(35.6895, 139.6917);
 }
+
+
