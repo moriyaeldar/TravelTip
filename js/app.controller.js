@@ -8,6 +8,7 @@ window.onGetLocs = onGetLocs;
 window.onGetUserPos = onGetUserPos;
 window.onGoToLocation = onGoToLocation;
 window.onDeleteLocation = onDeleteLocation;
+// window.copyText = copyText;
 
 function onInit() {
     mapService.initMap()
@@ -21,6 +22,7 @@ function onInit() {
                     .then(doConfirm)
                     .then(loc => getDetailLoc(loc))
                     .then(details => locService.saveLoc(details))
+                    .then(renderTable)
             })
         })
         .catch(() => console.log('Error: cannot init map'));
@@ -43,7 +45,7 @@ function renderTable(locations) {
                 <td>${location.updatedAt}</td>
                  <td>
                 <button class="go" onclick="onGoToLocation(${location.lat},${location.lng})">Go</button>
-                <button class="delete" onclick="onDeleteLocation('${location.id}',${locations})">Delete</button>
+                <button class="delete" onclick="onDeleteLocation('${location.id}')">Delete</button>
                 </td>
                 </tr>
              `
@@ -71,6 +73,7 @@ function addMarker(loc) {
         title: 'Hello World!'
     });
     return Promise.resolve(loc);
+
 }
 
 // This function provides a Promise API to the callback-based-api of getCurrentPosition
@@ -99,10 +102,8 @@ function onGetUserPos() {
     getPosition()
         .then(pos => {
             console.log('User position is:', pos.coords);
-            document.querySelector('.user-pos').innerText =
-                `
-Latitude: $ { pos.coords.latitude } - Longitude: $ { pos.coords.longitude }
-`
+            // document.querySelector('.user-pos').innerText = `Latitude:${ pos.coords.latitude }-Longitude:${ pos.coords.longitude }`
+
             mapService.initMap(pos.coords.latitude, pos.coords.longitude)
 
         })
@@ -122,6 +123,17 @@ function onGoToLocation(lat, lng) {
     mapService.initMap(lat, lng)
 }
 
-function onDeleteLocation(locationId, locations) {
-    locService.deleteLocation(locationId, locations)
+function onDeleteLocation(locationId) {
+    locService.deleteLocation(locationId)
+    locService.getLocs()
+        .then(renderTable)
 }
+
+// function copyText(lat, lng) {
+//     var copyText = `My location is:latitude- ${lat}-longitude-${lng}`
+//     copyText.select();
+//     copyText.setSelectionRange(0, 99999);
+//     navigator.clipboard.writeText(copyText.value);
+
+//     alert("Copied the text: " + copyText.value);
+// }

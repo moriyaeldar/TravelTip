@@ -7,36 +7,28 @@ export const locService = {
 
 
 const locs = [
-    { name: 'Greatplace', lat: 32.047104, lng: 34.832384 },
-    { name: 'Neveragain', lat: 32.047201, lng: 34.832581 }
+    { id: 0, name: 'Greatplace', lat: 32.047104, lng: 34.832384 },
+    { id: 1, name: 'Neveragain', lat: 32.047201, lng: 34.832581 }
 ]
 storageService.saveToStorage('locsDB', locs);
 
 function getLocs() {
-    const locs = storageService.loadFromStorage();
-    if (locs) return Promise.resolve(locs)
+    const locs1 = storageService.loadFromStorage();
+    if (locs1) return Promise.resolve(locs1)
     return new Promise((resolve, reject) => {
         setTimeout(() => {
             resolve(locs);
-<<<<<<< HEAD
         }, 500)
-=======
-            storageService.saveToStorage('locsDB', locs)
-        }, 2000)
->>>>>>> ea53c66facc0a2fdd67a5f132c0cf5366b1905c2
     });
 }
 
-function deleteLocation(locationId, locations) {
-    locations.splice(locationId, 1)
+function deleteLocation(locationId) {
+    locs.splice(locationId, 1)
 
 }
 
 function saveLoc(details) {
     locs.push(details)
-<<<<<<< HEAD
-=======
     details.id = (locs.length);
->>>>>>> ea53c66facc0a2fdd67a5f132c0cf5366b1905c2
     storageService.saveToStorage('locsDB', locs)
 }
