@@ -1,0 +1,187 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    font-family: Arial, Helvetica, sans-serif;
+    background-color: rgba(243, 135, 33, 0.897)
+}
+
+header {
+    margin: 10px;
+}
+
+
+/* MAIN ITEMS */
+
+h1 {
+    font-size: 60px;
+    margin: 10px;
+}
+
+h2 {
+    margin: 10px;
+}
+
+.current-location {
+    margin: 10px;
+    margin-bottom: 50px;
+}
+
+#map {
+    margin: 15px;
+}
+
+.weather {
+    background-color: white;
+    height: 200px;
+    margin: 15px;
+}
+
+.location-table {
+    background-color: rgb(14, 83, 148);
+    height: 200px;
+    margin: 15px;
+}
+
+.search-line {
+    margin-top: 30px;
+}
+
+button {
+    cursor: pointer;
+    height: 40px;
+    background-color: rgb(102, 97, 97);
+    color: white;
+}
+
+button.copy {
+    height: 50px;
+    width: 200px;
+}
+
+button.submit {
+    width: 80px;
+}
+
+button.my {
+    width: 150px;
+}
+
+
+/* flex helpers */
+
+.flex {
+    display: flex;
+}
+
+.flex.space-between {
+    justify-content: space-between;
+}
+
+.flex.align-center {
+    align-items: center;
+}
+
+.flex.justify-center {
+    justify-items: center;
+}
+
+.flex.space-around {
+    justify-content: space-around;
+}
+
+.flex.column {
+    flex-direction: column;
+}
+
+.flex.row-reverse {
+    flex-direction: row-reverse;
+}
+
+.flex.wrap {
+    flex-wrap: wrap;
+}
+
+
+/* grid helpers */
+
+.grid {
+    display: grid;
+}
+
+
+/* list-helpers */
+
+.clean-list {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+
+
+/* MOBILE ONLY */
+
+@media (max-width: 580px) {
+    .main-layout {
+        width: 560px;
+    }
+    #search {
+        margin-bottom: 30px;
+        border-color: rgb(165, 161, 159);
+        width: 100px;
+        height: 40px;
+    }
+    .weather {
+        column-width: 150px;
+    }
+}
+
+
+/* MEDUME */
+
+@media (min-width: 580px) {
+    .main-layout {
+        max-width: 900px;
+    }
+    #search {
+        margin-bottom: 30px;
+        border-color: rgb(165, 161, 159);
+        width: 200px;
+        height: 40px;
+    }
+    header {
+        justify-content: space-between;
+    }
+    .current-location {
+        justify-content: space-between;
+    }
+    .weather {
+        column-width: 300px;
+    }
+}
+
+
+/* REGULAR */
+
+@media (min-width: 1100px) {
+    .main-layout {
+        max-width: 1300px;
+    }
+    #search {
+        margin-bottom: 30px;
+        border-color: rgb(165, 161, 159);
+        width: 300px;
+        height: 40px;
+    }
+    header {
+        justify-content: space-between;
+    }
+    .current-location {
+        justify-content: space-between;
+    }
+    .weather {
+        column-width: 500px;
+    }
+}
