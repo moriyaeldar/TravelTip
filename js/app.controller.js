@@ -13,7 +13,9 @@ function onInit() {
             console.log('Map is ready');
             console.log('Map!', map);
             map.addListener("click", (mapClicked) => {
-                addMarker(mapClicked.latLng)
+                addMarker(mapClicked.latLng).then(() =>
+                    confirm('Do you want to add this location to your locations?')
+                )
             })
         })
         .catch(() => console.log('Error: cannot init map'));
@@ -25,7 +27,7 @@ function addMarker(loc) {
         map: mapService.getMap(),
         title: 'Hello World!'
     });
-    return marker;
+    return Promise.resolve(marker);
 }
 
 // This function provides a Promise API to the callback-based-api of getCurrentPosition
