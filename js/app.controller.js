@@ -13,21 +13,34 @@ function onInit() {
             console.log('Map is ready');
             console.log('Map!', map);
             map.addListener("click", (mapClicked) => {
-                addMarker(mapClicked.latLng).then(() =>
-                    confirm('Do you want to add this location to your locations?')
-                )
+                console.log(mapClicked);
+                addMarker(mapClicked.latLng)
+                    .then(loc => ({ lat: loc.lat(), lng: loc.lng()}))
+                    .then(doConfirm)
+                    .then(loc => getDetailLoc(loc))
+                    .then(details => locService.saveLoc(details))
             })
         })
         .catch(() => console.log('Error: cannot init map'));
 }
 
+function doConfirm(loc) {
+    const res = confirm('Do you want to save this location?');
+    return (res) ? Promise.resolve(loc) : Promise.reject('Not Now!')
+}
+
+function getDetailLoc(loc) {
+    const name = prompt('Please enter location name');
+    return Promise.resolve({ name, lat: loc.lat, lan: loc.lan, createdAt: Date.now() })
+}
+
 function addMarker(loc) {
-    var marker = new google.maps.Marker({
+    new google.maps.Marker({
         position: loc,
         map: mapService.getMap(),
         title: 'Hello World!'
     });
-    return Promise.resolve(marker);
+    return Promise.resolve(loc);
 }
 
 // This function provides a Promise API to the callback-based-api of getCurrentPosition
