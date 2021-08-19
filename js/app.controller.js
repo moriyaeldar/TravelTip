@@ -22,11 +22,12 @@ function onInit() {
                     .then(doConfirm)
                     .then(loc => getDetailLoc(loc))
                     .then(details => locService.saveLoc(details))
+                    .then(locService.getLocs)
                     .then(renderTable)
             })
         })
-        .catch(() => console.log('Error: cannot init map'));
-    locService.getLocs()
+        .catch(() => console.log('Error: cannot init map'))
+        .then(locService.getLocs)
         .then(renderTable)
 }
 
